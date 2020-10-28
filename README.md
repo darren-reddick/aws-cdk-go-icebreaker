@@ -1,7 +1,7 @@
 # aws-cdk-go-icebreaker
 
 <p align="left">
-<img width="100" height="100" src="https://github.com/dreddick-home/aws-cdk-go-icebreaker/raw/master/images/icebreaker.jpg">
+<img width="100" height="100" src="https://github.com/dreddick-home/aws-cdk-go-icebreaker/raw/main/images/icebreaker.jpg">
 </p>
 
 This repo is an example of deploying a simple Go application to AWS Lambda using the AWS CDK..
