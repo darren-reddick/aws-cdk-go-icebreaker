@@ -103,7 +103,7 @@ cdk deploy
 
 ## Releases
 
-See https://github.com/dreddick-home/aws-cdk-go-icebreaker/releases
+See https://github.com/darren-reddick/aws-cdk-go-icebreaker/releases
 
 ## TODO
 
