@@ -1,17 +1,17 @@
 # aws-cdk-go-icebreaker
 
 <p align="left">
-<img width="100" height="100" src="https://github.com/dreddick-home/aws-cdk-go-icebreaker/raw/main/images/icebreaker.jpg">
+<img width="100" height="100" src="https://github.com/darren-reddick/aws-cdk-go-icebreaker/raw/main/images/icebreaker.jpg">
 </p>
 
 This repo is an example of deploying a simple Go application to AWS Lambda using the AWS CDK..
 
 <p align="left">
-<img src="https://img.shields.io/github/go-mod/go-version/dreddick-home/aws-cdk-go-icebreaker">
-<img src="https://img.shields.io/github/v/release/dreddick-home/aws-cdk-go-icebreaker">
-<img src="https://github.com/dreddick-home/aws-cdk-go-icebreaker/workflows/CICD/badge.svg">
+<img src="https://img.shields.io/github/go-mod/go-version/darren-reddick/aws-cdk-go-icebreaker">
+<img src="https://img.shields.io/github/v/release/darren-reddick/aws-cdk-go-icebreaker">
+<img src="https://github.com/darren-reddick/aws-cdk-go-icebreaker/workflows/CICD/badge.svg">
 <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
-<img src="https://goreportcard.com/badge/github.com/dreddick-home/aws-cdk-go-icebreaker">
+<img src="https://goreportcard.com/badge/github.com/darren-reddick/aws-cdk-go-icebreaker">
 </p>
 
 
