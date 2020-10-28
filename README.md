@@ -41,7 +41,7 @@ An internal app is required to be created in slack. This will provide an api tok
 * Install app
 * Invite app into channel in slack - for example: "/invite icebreaker"
 
-2 environment variables should be created which will be used to pass to the Lambda function
+Some environment variables should be created which will be used to pass to the Lambda function
 ```bash
 export TOKEN=[Bot User OAuth Access Token]
 export CHANNEL_ID=[id of channel for messages]
