@@ -12,10 +12,9 @@ class IcebreakerService(core.Construct):
 
         handler = lambda_.Function(self, "IcebreakerHandler",
                     runtime=lambda_.Runtime.GO_1_X,
-                    code=lambda_.Code.from_asset("resources/function.zip"),
+                    code=lambda_.Code.from_asset(".appsource/"),
                     handler="main",
                     environment=dict(
-                      BUCKET='test',
                       TOKEN=os.environ.get('TOKEN'),
                       CHANNEL_ID=os.environ.get('CHANNEL_ID')
                       )
@@ -26,21 +25,11 @@ class IcebreakerService(core.Construct):
         )
 
         cron = events.Schedule.cron(
-          #'cron(* * * * TUE *)'
+          hour='11',
+          minute='00'
         )
-#
+
         rule = events.Rule(self, "IcebreakerEventRule",
           schedule=cron,
           targets=[target]
         )
-
-
-
-        api = apigateway.RestApi(self, "icebreaker-api",
-                  rest_api_name="Icebreaker Service",
-                  description="This service breaks ice.")
-
-        get_widgets_integration = apigateway.LambdaIntegration(handler,
-                request_templates={"application/json": '{ "statusCode": "200" }'})
-
-        api.root.add_method("GET", get_widgets_integration)   # GET /

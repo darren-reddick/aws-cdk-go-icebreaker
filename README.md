@@ -1,17 +1,17 @@
-# go-lambda-icebreaker
+# aws-cdk-go-icebreaker
 
 <p align="left">
-<img width="100" height="100" src="https://github.com/dreddick-home/aws_cdk_go_icebreaker/raw/master/images/icebreaker.jpg">
+<img width="100" height="100" src="https://github.com/dreddick-home/aws-cdk-go-icebreaker/raw/master/images/icebreaker.jpg">
 </p>
 
 This repo is an example of deploying a simple Go application to AWS Lambda using the AWS CDK..
 
 <p align="left">
-<img src="https://img.shields.io/github/go-mod/go-version/dreddick-home/aws_cdk_go_icebreaker">
-<img src="https://img.shields.io/github/v/release/dreddick-home/aws_cdk_go_icebreaker">
-<img src="https://github.com/dreddick-home/aws_cdk_go_icebreaker/workflows/CICD/badge.svg">
+<img src="https://img.shields.io/github/go-mod/go-version/dreddick-home/aws-cdk-go-icebreaker">
+<img src="https://img.shields.io/github/v/release/dreddick-home/aws-cdk-go-icebreaker">
+<img src="https://github.com/dreddick-home/aws-cdk-go-icebreaker/workflows/CICD/badge.svg">
 <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg">
-<img src="https://goreportcard.com/badge/github.com/dreddick-home/aws_cdk_go_icebreaker">
+<img src="https://goreportcard.com/badge/github.com/dreddick-home/aws-cdk-go-icebreaker">
 </p>
 
 
@@ -25,20 +25,15 @@ The deployment uses the AWS CDK to deploy the infrastructure. The cron execution
 
 ### Pre-requisites
 
+How to setup the local environment
+
 1. [AWS CDK for Python installed](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html)
 1. An AWS account
 1. A local AWS profile for an IAM user with a role which allows deployment of infrastructure
 
-### Creating pipeline infrastructure
-
-Bootstrap the CDK environment
-```bash
-cdk bootstrap
-```
-
 ### Configuring Slack
 
-Create an internal app:
+An internal app is required to be created in slack. This will provide an api token to use.
 * https://api.slack.com/apps
 * Create App
 * Add permissions "channels:read", "chat:write", "users:read" in the "OAuth & Permissions" section
@@ -46,10 +41,59 @@ Create an internal app:
 * Install app
 * Invite app into channel in slack - for example: "/invite icebreaker"
 
-Store the Bot User Oauth Token as TOKEN in Github secrets
-Store the ChannelId (NOT name) in Github secrets as CHANNEL_ID
+2 environment variables should be created which will be used to pass to the Lambda function
+```bash
+export TOKEN=[Bot User OAuth Access Token]
+export CHANNEL_ID=[id of channel for messages]
+```
+
+### Installing Dependencies
+
+Set up python virtual env
+```bash
+python3 -m venv .env
+
+source .env/bin/activate
+```
+
+Install python packages
+```bash
+pip3 install -r requirements.txt
+```
+
+### Build the go binary
+
+Build the go binary from source in a temp location to be deployed to Lambda
+```bash
+cd resources
+GOOS=linux go build -o  ../.appsource/main 
+cd ..
+```
+
+### Creating pipeline infrastructure
+
+Ensure that the AWS_PROFILE env variable is set to the the profile which will be used to deploy
+```bash
+export AWS_PROFILE=[deploy profile]
+```
+
+Bootstrap the CDK environment - this creates an S3 bucket which is used by cdk for managing deployments
+```bash
+cdk bootstrap
+```
 
 ### Deploy the infrastructure
+
+View the cloudformation template that will be built by the cdk
+```bash
+cdk synth
+```
+
+Preview of what will be deployed
+```bash
+cdk diff
+```
+
 
 Use the CDK to deploy
 ```bash
@@ -59,9 +103,10 @@ cdk deploy
 
 ## Releases
 
-See https://github.com/dreddick-home/aws_cdk_go_icebreaker/releases
+See https://github.com/dreddick-home/aws-cdk-go-icebreaker/releases
 
 ## TODO
 
 * Add github actions to be used to deploy
+* Some go tests
 * Scan message history to ensure same person doesnt get picked twice in a row
